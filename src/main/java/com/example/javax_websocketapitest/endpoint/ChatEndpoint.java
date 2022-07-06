@@ -1,6 +1,8 @@
 package com.example.javax_websocketapitest.endpoint;
 
 import com.example.javax_websocketapitest.utils.Message;
+import com.example.javax_websocketapitest.utils.MessageDecoder;
+import com.example.javax_websocketapitest.utils.MessageEncoder;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -10,7 +12,11 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-@ServerEndpoint(value = "/chat/{username}")
+@ServerEndpoint(
+        value = "/chat/{username}",
+        decoders = MessageDecoder.class,
+        encoders = MessageEncoder.class
+)
 public class ChatEndpoint {
 
     private Session session;
